@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI智能客服APP原型</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            background-color: white;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .status-bar {
+            height: 44px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+
+        .home-indicator {
+            height: 5px;
+            width: 135px;
+            background-color: #000;
+            border-radius: 3px;
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.2;
+        }
+
+        .screen {
+            height: calc(100% - 44px);
+            margin-top: 44px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .chat-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            margin-bottom: 10px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .user-bubble {
+            background-color: #007AFF;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-bubble {
+            background-color: #F2F2F7;
+            color: #000;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            padding: 12px 16px;
+            background-color: #F2F2F7;
+            border-radius: 18px;
+            width: fit-content;
+            margin-bottom: 10px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .typing-dot {
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background-color: #8E8E93;
+            margin: 0 2px;
+            animation: typing 1.5s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .nav-pill {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #F2F2F7;
+            margin: 0 5px;
+            white-space: nowrap;
+        }
+
+        .nav-pill.active {
+            background-color: #007AFF;
+            color: white;
+        }
+
+        .company-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .job-card {
+            border-radius: 16px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .faq-item {
+            border-radius: 16px;
+            background-color: white;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-button {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 12px;
+        }
+
+        .tab-button.active {
+            color: #007AFF;
+            border-bottom: 2px solid #007AFF;
+        }
+
+        .bottom-sheet {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .sheet-handle {
+            width: 40px;
+            height: 5px;
+            background-color: #C7C7CC;
+            border-radius: 3px;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body class="p-4">
+    <!-- 公司介绍页面 -->
+    <div class="phone-frame">
+        <div class="status-bar">
+            <div>9:41</div>
+            <div class="flex">
+                <i class="fas fa-signal mr-2"></i>
+                <i class="fas fa-wifi mr-2"></i>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+        <div class="screen bg-white">
+            <div class="flex flex-col h-full">
+                <!-- 顶部导航 -->
+                <div class="px-4 py-3 border-b border-gray-200 flex items-center">
+                    <i class="fas fa-arrow-left mr-4"></i>
+                    <h1 class="text-lg font-semibold">公司介绍</h1>
+                </div>
+
+                <!-- 内容区域 -->
+                <div class="flex-1 overflow-y-auto p-4">
+                    <div class="company-card mb-6">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="公司大楼" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h2 class="text-xl font-bold mb-2">未来科技有限公司</h2>
+                            <p class="text-gray-500 mb-4">成立于2015年 · 人工智能领域</p>
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-map-marker-alt text-gray-400 w-5"></i>
+                                <span class="text-gray-600 ml-2">北京市海淀区中关村科技园区</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-users text-gray-400 w-5"></i>
+                                <span class="text-gray-600 ml-2">500-1000人</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-globe text-gray-400 w-5"></i>
+                                <span class="text-blue-500 ml-2">www.futuretech.com</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-lg mb-3">公司简介</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        未来科技有限公司是一家专注于人工智能技术研发与应用的高新技术企业，成立于2015年，总部位于北京，在上海、深圳、杭州等地设有分支机构。公司致力于将前沿AI技术与各行业深度融合，为企业和个人用户提供智能化解决方案。
+                    </p>
+
+                    <h3 class="font-bold text-lg mb-3">核心业务</h3>
+                    <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
+                        <div class="flex items-center mb-2">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-robot text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">智能客服系统</h4>
+                                <p class="text-gray-500 text-sm">基于NLP技术的全渠道智能客服解决方案</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
+                        <div class="flex items-center mb-2">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-chart-line text-purple-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">数据分析平台</h4>
+                                <p class="text-gray-500 text-sm">企业级大数据分析与可视化平台</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                        <div class="flex items-center mb-2">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-cogs text-green-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">AI解决方案</h4>
+                                <p class="text-gray-500 text-sm">面向金融、医疗、教育等行业的定制化AI解决方案</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-lg mb-3">企业文化</h3>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <h4 class="font-semibold text-center mb-2">使命</h4>
+                            <p class="text-gray-600 text-center text-sm">让AI技术惠及每一个人</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <h4 class="font-semibold text-center mb-2">愿景</h4>
+                            <p class="text-gray-600 text-center text-sm">成为全球领先的AI解决方案提供商</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <h4 class="font-semibold text-center mb-2">价值观</h4>
+                            <p class="text-gray-600 text-center text-sm">创新、协作、诚信、卓越</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <h4 class="font-semibold text-center mb-2">口号</h4>
+                            <p class="text-gray-600 text-center text-sm">科技改变未来</p>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-lg mb-3">公司环境</h3>
+                    <div class="grid grid-cols-2 gap-2 mb-6">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="办公环境" class="rounded-lg h-32 object-cover">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="办公环境" class="rounded-lg h-32 object-cover">
+                        <img src="https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="办公环境" class="rounded-lg h-32 object-cover">
+                        <img src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="办公环境" class="rounded-lg h-32 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+        <div class="absolute bottom-20 left-0 right-0 text-center text-gray-500">公司介绍页面</div>
+    </div>
+</body>
+
+</html>

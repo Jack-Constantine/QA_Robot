@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI智能客服APP - 聊天页面</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            background-color: #fff;
+            border-radius: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin: 20px;
+            display: inline-block;
+        }
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #fff;
+        }
+        .screen {
+            height: calc(100% - 20px);
+            overflow: hidden;
+        }
+        .home-indicator {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background-color: #000;
+            border-radius: 3px;
+        }
+        .message-bubble {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .message-bubble.user {
+            background-color: #3b82f6;
+            color: white;
+            border-bottom-right-radius: 4px;
+            align-self: flex-end;
+        }
+        .message-bubble.ai {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <div>9:41</div>
+            <div class="flex">
+                <i class="fas fa-signal mr-2"></i>
+                <i class="fas fa-wifi mr-2"></i>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+        <div class="screen bg-white">
+            <div class="flex flex-col h-full">
+                <!-- 顶部导航 -->
+                <div class="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                    <div class="flex items-center">
+                        
+                        <div>
+                            <h1 class="text-lg font-semibold">AI智能助手</h1>
+                            <p class="text-xs text-gray-500">在线，通常几秒内回复</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-ellipsis-v text-gray-500"></i>
+                </div>
+                
+                <!-- 聊天内容 -->
+                <div class="flex-1 overflow-y-auto p-4 bg-gray-50 flex flex-col">
+                    <div class="flex items-center justify-center mb-6">
+                        <span class="text-xs bg-gray-200 text-gray-500 px-3 py-1 rounded-full">今天 9:30</span>
+                    </div>
+                    
+                    <div class="message-bubble ai flex items-start">
+                        <div class="flex-shrink-0 mr-2">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                                <i class="fas fa-robot text-blue-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="mb-1">您好！我是AI智能助手，很高兴为您服务。请问有什么可以帮助您的吗？</p>
+                        </div>
+                    </div>
+                    
+                    <div class="message-bubble user">
+                        <p>你好，我想了解一下贵公司的AI客服系统有哪些主要功能？</p>
+                    </div>
+                    
+                    <div class="message-bubble ai flex items-start">
+                        <div class="flex-shrink-0 mr-2">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                                <i class="fas fa-robot text-blue-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="mb-1">我们的AI客服系统主要有以下功能：</p>
+                            <ol class="list-decimal pl-5 mb-1">
+                                <li>智能对话：基于先进的NLP技术，实现自然流畅的人机对话</li>
+                                <li>多渠道接入：支持网页、APP、微信、电话等多渠道接入</li>
+                                <li>知识库管理：自动构建和更新企业知识库</li>
+                                <li>情感分析：实时分析用户情绪，提供差异化服务</li>
+                                <li>数据分析：提供全面的客服数据分析和报表</li>
+                                <li>多语言支持：支持中英日韩等20多种语言</li>
+                            </ol>
+                            <p>您对哪方面功能更感兴趣？我可以为您提供更详细的介绍。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="message-bubble user">
+                        <p>我对知识库管理比较感兴趣，能详细介绍一下吗？</p>
+                    </div>
+                    
+                    <div class="message-bubble ai flex items-start">
+                        <div class="flex-shrink-0 mr-2">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                                <i class="fas fa-robot text-blue-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="mb-1">关于知识库管理功能，我们的系统提供了以下特点：</p>
+                            <ol class="list-decimal pl-5 mb-1">
+                                <li>自动抓取：可以自动从企业网站、文档、FAQ等多种渠道抓取知识</li>
+                                <li>智能分类：利用AI技术自动对知识进行分类和标签管理</li>
+                                <li>持续学习：根据用户问答记录，不断丰富和优化知识库内容</li>
+                                <li>知识审核：提供完善的知识审核流程，确保知识准确性</li>
+                                <li>版本管理：支持知识库的版本管理和回滚功能</li>
+                                <li>数据分析：提供知识使用情况分析，发现知识盲点</li>
+                            </ol>
+                            <p>这套知识库管理系统能够大大降低企业维护知识库的成本，同时提高知识的准确性和覆盖率。您是否需要了解具体的应用案例？</p>
+                        </div>
+                    </div>
+                    
+                    <div class="message-bubble user">
+                        <p>是的，请给我介绍一些成功的应用案例。</p>
+                    </div>
+                    
+                    <div class="message-bubble ai flex items-start">
+                        <div class="flex-shrink-0 mr-2">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                                <i class="fas fa-robot text-blue-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="mb-1">以下是我们几个典型的成功案例：</p>
+                            <p class="mb-1"><strong>案例1：某大型电商平台</strong><br>
+                            该平台拥有超过10万种商品，客服团队面临巨大的知识管理压力。采用我们的系统后，自动从商品详情、用户评价、售后政策等渠道构建知识库，覆盖率达到95%以上。智能客服可以自动回答90%的常见问题，客服人员工作效率提升40%。</p>
+                            
+                            <p class="mb-1"><strong>案例2：某银行客服中心</strong><br>
+                            该银行有复杂的金融产品和频繁更新的政策。通过我们的系统，实现了知识的自动更新和推送，确保客服人员获取最新信息。系统还能根据用户画像推荐相关知识，提高了服务精准度，客户满意度提升了25%。</p>
+                            
+                            <p>您是否有兴趣了解我们的产品定价或申请免费试用？</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 底部输入框 -->
+                <div class="p-3 border-t border-gray-200 bg-white">
+                    <div class="flex items-center">
+                        <button class="p-2 text-gray-500">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="p-2 text-gray-500 mx-1">
+                            <i class="fas fa-image"></i>
+                        </button>
+                        <div class="flex-1 bg-gray-100 rounded-full px-4 py-2 mx-2 flex items-center">
+                            <input type="text" placeholder="输入消息..." class="bg-transparent w-full focus:outline-none">
+                            <i class="fas fa-smile text-gray-400 ml-2"></i>
+                        </div>
+                        <button class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
