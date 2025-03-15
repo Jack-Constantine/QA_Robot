@@ -5,9 +5,11 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -51,11 +53,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.final_project.ui.theme.Final_projectTheme
+import com.google.gson.GsonBuilder
+import dev.jeziellago.compose.markdowntext.MarkdownText
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 // 修改为ChatMessage以避免与FastGPTApi中的Message冲突
 data class ChatMessage(
     val content: String,
@@ -145,7 +150,7 @@ fun ChatPageScreen() {
                 )
 
                 // 输出请求JSON到日志
-                val gson = com.google.gson.GsonBuilder().setPrettyPrinting().create()
+                val gson = GsonBuilder().setPrettyPrinting().create()
                 val jsonRequest = gson.toJson(request)
                 Log.d("FastGPT_Request", jsonRequest)
 
@@ -169,7 +174,8 @@ fun ChatPageScreen() {
 
                 // 如果出错，显示错误消息
                 if (aiMessageIndex < messages.size) {
-                    messages[aiMessageIndex] = ChatMessage("抱歉，连接服务器时出现问题: ${e.message}", false)
+                    messages[aiMessageIndex] =
+                        ChatMessage("抱歉，连接服务器时出现问题: ${e.message}", false)
                 }
             } catch (e: Exception) {
                 Log.e("ChatPageActivity", "API调用失败", e)
@@ -177,10 +183,12 @@ fun ChatPageScreen() {
                 // 如果出错，显示更友好的错误消息
                 if (aiMessageIndex < messages.size) {
                     val errorMessage = when {
-                        e is java.net.SocketTimeoutException ->
+                        e is SocketTimeoutException ->
                             "连接服务器超时。可能的原因：\n1. 网络连接不稳定\n2. API服务器响应时间过长\n3. API端点可能不正确\n\n建议：\n- 检查网络连接\n- 确认API密钥和端点是否正确"
-                        e is java.net.UnknownHostException ->
+
+                        e is UnknownHostException ->
                             "无法连接到服务器。可能的原因：\n1. 网络连接问题\n2. API端点域名不正确\n\n建议：\n- 检查网络连接\n- 确认API端点是否正确"
+
                         else -> "连接服务器时出现问题: ${e.message}"
                     }
                     messages[aiMessageIndex] = ChatMessage(errorMessage, false, isLoading = false)
@@ -344,8 +352,8 @@ fun LoadingDot(delayMillis: Int) {
         initialValue = 6f,
         targetValue = 10f,
         animationSpec = infiniteRepeatable(
-            animation = androidx.compose.animation.core.tween(500, delayMillis),
-            repeatMode = androidx.compose.animation.core.RepeatMode.Reverse
+            animation = tween(500, delayMillis),
+            repeatMode = RepeatMode.Reverse
         ),
         label = "dot size"
     )
@@ -413,7 +421,21 @@ fun MessageBubble(message: ChatMessage) {
                     color = Color(0xFFF3F4F6)
                 ) {
                     Column(modifier = Modifier.padding(12.dp)) {
-                        Text(text = message.content)
+                        MarkdownText(markdown=message.content)
+//                        Markdown(
+//                            content = message.content,
+//                            modifier = Modifier.fillMaxWidth(),
+//                            colors = DefaultMarkdownColors(),
+//                            typography = DefaultMarkdownTypography(),
+//                            padding = PaddingValues(8.dp),
+//                            dimens = DefaultMarkdownDimens(),
+//                            flavour = MarkdownFlavour.GitHub,
+//                            imageTransformer = DefaultImageTransformer(),
+//                            annotator = DefaultMarkdownAnnotator(),
+//                            extendedSpans = listOf(MarkdownSpan.Bold, MarkdownSpan.Italic),
+//                            components = listOf(DefaultMarkdownComponents()),
+//                            animations = DefaultMarkdownAnimations()
+//                        )
 
                         if (message.features.isNotEmpty()) {
                             Spacer(modifier = Modifier.height(4.dp))
@@ -435,5 +457,3 @@ fun MessageBubble(message: ChatMessage) {
         }
     }
 }
-
-

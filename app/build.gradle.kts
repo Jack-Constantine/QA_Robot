@@ -55,7 +55,13 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.converter.gson)
-    implementation ("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation (libs.okhttp)
+
+    //Markdown支持
+    implementation (libs.compose.markdown)
+
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

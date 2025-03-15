@@ -56,7 +56,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.final_project.ui.theme.Final_projectTheme
 
-class JobsPageActivity : ComponentActivity() {
+class AppPageActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
             super.onCreate(savedInstanceState)

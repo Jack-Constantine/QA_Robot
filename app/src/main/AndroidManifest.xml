@@ -35,12 +35,12 @@
             android:theme="@style/Theme.Final_project">
         </activity>
         <activity
-            android:name=".JobsPageActivity"
+            android:name=".HomePageActivity"
             android:exported="false"
             android:theme="@style/Theme.Final_project">
         </activity>
         <activity
-            android:name=".HomePageActivity"
+            android:name=".AppPageActivity"
             android:exported="false"
             android:theme="@style/Theme.Final_project">
         </activity>

@@ -5,9 +5,12 @@ accompanistSystemuicontroller = "0.36.0"
 agp = "8.9.0"
 coilCompose = "2.2.2"
 coilKtCoilCompose = "2.4.0"
+composeMarkdown = "0.3.0"
+composeMarkdownVersion = "0.3.0"
 converterGson = "2.9.0"
 fontAwesome = "1.1.0"
 fontawesomecompose = "1.0.0"
+githubComposeMarkdown = "0.5.7"
 glide = "4.13.0"
 gson = "2.10.1"
 constraintlayoutCompose = "1.1.0"
@@ -22,6 +25,8 @@ lifecycleRuntimeKtx = "2.6.1"
 activityCompose = "1.8.0"
 composeBom = "2024.09.00"
 lifecycleRuntimeKtxVersion = "2.8.7"
+markdownCompose = "1.1.0"
+okhttp = "4.11.0"
 retrofit = "2.9.0"
 loggingInterceptor = "4.9.1"
 runtimeLivedata = "1.7.8"
@@ -38,11 +43,14 @@ androidx-lifecycle-runtime-ktx-v287 = { module = "androidx.lifecycle:lifecycle-r
 androidx-xfoundation = { module = "androidx.compose.foundation: foundation", version.ref = "xfoundation" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 coil-compose-v240 = { module = "io.coil-kt:coil-compose", version.ref = "coilKtCoilCompose" }
+compose-markdown = { module = "com.github.jeziellago:compose-markdown", version.ref = "composeMarkdown" }
+compose-markdown-v057 = { module = "com.github.jeziellago:compose-markdown", version.ref = "githubComposeMarkdown" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 font-awesome = { module = "br.com.devsrsouza.compose-icons:font-awesome", version.ref = "fontAwesome" }
 fontawesomecompose = { module = "com.github.Gurupreet:FontAwesomeCompose", version.ref = "fontawesomecompose" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+jeziellago-compose-markdown = { module = "dev.jeziellago:compose-markdown", version.ref = "composeMarkdownVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -59,6 +67,8 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinStdlib" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
+markdown-compose = { module = "com.mikepenz:markdown-compose", version.ref = "markdownCompose" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 
 [plugins]
