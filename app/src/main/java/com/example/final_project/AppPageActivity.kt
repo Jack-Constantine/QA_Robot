@@ -111,7 +111,7 @@ fun ByteDanceProductsScreen() {
 // 提取出内容部分作为可复用组件
 @Composable
 fun ByteDanceProductsContent() {
-    
+
     val products = remember {
         listOf(
             Product(
@@ -167,8 +167,7 @@ fun ByteDanceProductsContent() {
         // 顶部导航
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                ,
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
         }
@@ -211,9 +210,9 @@ fun ProductCard(product: Product) {
                         .clip(RoundedCornerShape(8.dp)),
                     contentScale = ContentScale.Crop
                 )
-                
+
                 Spacer(modifier = Modifier.width(12.dp))
-                
+
                 Column(modifier = Modifier.weight(1f)) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -225,7 +224,7 @@ fun ProductCard(product: Product) {
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp
                         )
-                        
+
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(12.dp))
@@ -239,9 +238,9 @@ fun ProductCard(product: Product) {
                             )
                         }
                     }
-                    
+
                     Spacer(modifier = Modifier.height(4.dp))
-                    
+
                     Text(
                         text = product.slogan,
                         color = Color.Gray,
@@ -249,18 +248,18 @@ fun ProductCard(product: Product) {
                     )
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(12.dp))
-            
+
             // 产品描述
             Text(
                 text = product.description,
                 color = Color.DarkGray,
                 fontSize = 14.sp
             )
-            
+
             Spacer(modifier = Modifier.height(12.dp))
-            
+
             // 下载量、评分和下载按钮
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -280,7 +279,7 @@ fun ProductCard(product: Product) {
                         fontSize = 12.sp,
                         modifier = Modifier.padding(start = 4.dp, end = 12.dp)
                     )
-                    
+
                     Icon(
                         imageVector = Icons.Default.Star,
                         contentDescription = "评分",
@@ -294,7 +293,7 @@ fun ProductCard(product: Product) {
                         modifier = Modifier.padding(start = 4.dp)
                     )
                 }
-                
+
                 Button(
                     onClick = { /* 下载应用 */ },
                     shape = RoundedCornerShape(24.dp),

@@ -61,6 +61,7 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+
 // 修改为ChatMessage以避免与FastGPTApi中的Message冲突
 data class ChatMessage(
     val content: String,
@@ -421,22 +422,7 @@ fun MessageBubble(message: ChatMessage) {
                     color = Color(0xFFF3F4F6)
                 ) {
                     Column(modifier = Modifier.padding(12.dp)) {
-                        MarkdownText(markdown=message.content)
-//                        Markdown(
-//                            content = message.content,
-//                            modifier = Modifier.fillMaxWidth(),
-//                            colors = DefaultMarkdownColors(),
-//                            typography = DefaultMarkdownTypography(),
-//                            padding = PaddingValues(8.dp),
-//                            dimens = DefaultMarkdownDimens(),
-//                            flavour = MarkdownFlavour.GitHub,
-//                            imageTransformer = DefaultImageTransformer(),
-//                            annotator = DefaultMarkdownAnnotator(),
-//                            extendedSpans = listOf(MarkdownSpan.Bold, MarkdownSpan.Italic),
-//                            components = listOf(DefaultMarkdownComponents()),
-//                            animations = DefaultMarkdownAnimations()
-//                        )
-
+                        MarkdownText(markdown = message.content)
                         if (message.features.isNotEmpty()) {
                             Spacer(modifier = Modifier.height(4.dp))
                             message.features.forEachIndexed { index, feature ->

@@ -67,9 +67,13 @@ data class Delta(
 // 创建 API 服务实例
 // 修改FastGPT API对象的初始化方式
 object FastGPTApi {
-    
+    //TODO 把它改成主机的IP,主机配置好了
     const val BASE_URL = "https://api.fastgpt.in/api/v1/chat/completions" // 替换为实际的 FastGPT API URL
     const val APP_KEY = "fastgpt-rcWC6jEr8PWK13rPsmoVJBbIqvlzd5p7PTWaDzfsiGGQh9njRs6ByswcL"
+//    const val IP="10.26.61.76:3000"
+//    const val BASE_URL = "http://"+IP+"/api/v1/chat/completions"
+//    const val APP_KEY = "fastgpt-kdGkRWeK1ylkCrQVb2enYu1Ra4C0gmneLnbsLpt2SDR2xRN1pBJTyOFdb"
+
 
     private val loggingInterceptor by lazy {
         HttpLoggingInterceptor().apply {

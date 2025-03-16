@@ -49,16 +49,16 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation (libs.coil.compose.v240)
+    implementation(libs.coil.compose.v240)
     implementation(libs.retrofit)
     implementation(libs.gson)
     implementation(libs.logging.interceptor)
-    implementation (libs.kotlinx.coroutines.android)
-    implementation (libs.converter.gson)
-    implementation (libs.okhttp)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
 
     //Markdown支持
-    implementation (libs.compose.markdown)
+    implementation(libs.compose.markdown)
 
 
 
